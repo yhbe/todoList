@@ -1,3 +1,23 @@
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Permanent Marker', cursive;
+}
+
 body{
-  background-color: red;
+  background-color: rgb(76, 168, 255);
+}
+
+
+.header{
+  font-size: 1.3rem;
+  padding: 30px;
+}
+
+.body{
+  box-shadow: 1px 1px 10px black;
+  height: 100vh;
+  border-radius: 20px 20px 0px 0px;
+  background-color: rgb(255, 255, 255);
 }
