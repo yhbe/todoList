@@ -35,7 +35,6 @@ body{
 }
 
 .projects{
-  display: flex;
   justify-content: center;
   height: max-content;
   margin-top: 50px;
@@ -65,6 +64,7 @@ body{
   background-color: rgb(0, 0, 0);
   color: white;
   border-radius: 8px;
+  margin-top: 2px;
 }
 
 form{
