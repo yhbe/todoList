@@ -24,11 +24,12 @@ body{
 
 .body{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   box-shadow: 1px 1px 10px black;
   height: 100vh;
   border-radius: 20px 20px 0px 0px;
   background-color: rgb(255, 255, 255);
+  gap: 5px;
 }
 
 .projects{
@@ -38,7 +39,7 @@ body{
   margin-top: 50px;
   box-shadow: 1px 1px 5px black;
   padding: 30px;
-  width: max-content;
+  width: 90%;
   margin: 50px auto;
   border-radius: 5px;
 }
@@ -57,8 +58,38 @@ body{
   cursor: pointer;
   font-size: inherit;
   border: none;
-  padding: 10px 15px;
+  padding: 5px 13px;
+  white-space: nowrap;
   background-color: rgb(0, 0, 0);
   color: white;
   border-radius: 8px;
+}
+
+form{
+  display: flex;
+  /* justify-content: space-between; */
+  height: max-content;
+  margin-top: 50px;
+  box-shadow: 1px 1px 5px black;
+  padding: 30px;
+  min-width: 490px;
+  width: 90%;
+  margin: 50px auto;
+  border-radius: 5px;
+}
+
+form > ul {
+  display: flex;
+  list-style: none;
+  width: 100%;
+}
+
+ul > :first-child{
+  flex-grow: 2;
+  min-width: 200px;
+}
+
+
+li > input[type="text"]{
+  width: 95%;
 }
