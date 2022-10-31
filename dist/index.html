@@ -19,21 +19,31 @@
     </div>
     <div class="body">
       <div class="projects">
-        <input placeholder="Project name e.g &#34;Work&#34;"></input>
-        <button>Add Project</button>
-        <div class="createdProjects">
-        </div>
+        <label for="project"></label>
+        <input
+          type="text"
+          name="text"
+          id="project"
+          placeholder="Project name e.g &#34;Work&#34;"
+        />
+        <button class="project-Button">Add Project</button>
+        <div class="createdProjects"></div>
       </div>
       <div class="todos">
         <form action="">
           <ul>
             <li>
               <label for="task"></label>
-              <input type="text" name="task" id="task" placeholder="Task e.g &#34;Walk the dog&#34;">
+              <input
+                type="text"
+                name="task"
+                id="task"
+                placeholder="Task e.g &#34;Walk the dog&#34;"
+              />
             </li>
             <li>
               <label for="date"></label>
-              <input type="date" name="date" id="date">
+              <input type="date" name="date" id="date" />
             </li>
             <li>
               <label for="priority"></label>
