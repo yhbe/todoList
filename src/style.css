@@ -68,8 +68,6 @@ body{
 }
 
 form{
-  display: flex;
-  /* justify-content: space-between; */
   height: max-content;
   margin-top: 50px;
   box-shadow: 1px 1px 5px black;
