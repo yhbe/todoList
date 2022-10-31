@@ -1,7 +1,9 @@
 import { projectSubmit } from "./project/projectSubmit";
 import css from "./style.css";
+import { todoSubmit } from "./todos/todoSubmit";
 
 projectSubmit();
+todoSubmit();
 
 export function storageAvailable(type) {
   let storage;
