@@ -68,8 +68,9 @@ body{
 }
 
 .created-Projects > p {
-  font-family: 'Permanent Marker', cursive;
+  /* font-family: 'Permanent Marker', cursive; */
   font-size: 1.5rem;
+  font-weight: 600;
   padding: 10px;
   margin: 5px 0px;
   background-color:  rgba(255, 0, 149, 0.3)
