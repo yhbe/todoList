@@ -1,5 +1,9 @@
+import { storageAvailable } from "..";
 import circle from "../images/minus-Circle.png";
 let list = [];
+
+let setTodo = () => localStorage.setItem("todo", JSON.stringify(list));
+let getTodo = () => JSON.parse(localStorage.getItem("todo"));
 
 function clear() {
   const createProjectsDiv = document.querySelector(".created-Projects");
@@ -22,6 +26,7 @@ export function projectSubmit() {
     const inp = document.querySelector("#project").value;
 
     list.push(new CreateProject(inp));
+    setTodo();
     loadProjectDom();
     console.log(list);
 
@@ -66,6 +71,14 @@ function trashEventListener() {
       });
 
       list = filteredList;
+      setTodo();
     });
   });
 }
+
+if (storageAvailable("localStorage")) {
+  list = getTodo();
+  loadProjectDom();
+}
+
+storageAvailable();
