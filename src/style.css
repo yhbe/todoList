@@ -117,3 +117,13 @@ li > button{
   color: white;
   border-radius: 8px;
 }
+
+option[value="low"]{
+  background-color: green
+}
+option[value="medium"]{
+  background-color: orange
+}
+option[value="urgent"]{
+  background-color: red;
+}
