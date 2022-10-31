@@ -1,3 +1,4 @@
+import circle from "../images/minus-Circle.png";
 let list = [];
 
 function clear() {
@@ -19,14 +20,14 @@ export function projectSubmit() {
     clear();
 
     const inp = document.querySelector("#project").value;
-    const createProjectsDiv = document.querySelector(".created-Projects");
 
     list.push(new CreateProject(inp));
     list.forEach((project) => {
       const p = document.createElement("p");
       p.classList.add(project.id);
+      p.classList.add("single-Project");
       p.innerHTML = project.name;
-      createProjectsDiv.append(p);
+      createProjectIcons(p);
     });
     console.log(list);
 
@@ -34,4 +35,10 @@ export function projectSubmit() {
   });
 }
 
-function createProjectIcons() {}
+function createProjectIcons(p) {
+  const createProjectsDiv = document.querySelector(".created-Projects");
+  const img = document.createElement("img");
+  img.src = circle;
+  p.appendChild(img);
+  createProjectsDiv.append(p);
+}

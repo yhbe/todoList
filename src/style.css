@@ -76,6 +76,12 @@ body{
   background-color:  rgba(255, 0, 149, 0.3)
 }
 
+.single-Project{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .todo-Form{
   height: max-content;
   margin-top: 50px;
@@ -136,5 +142,4 @@ option[value="medium"]{
 option[value="urgent"]{
   background-color: red;
 }
-
 
