@@ -132,3 +132,18 @@ li > button{
   color: white;
   border-radius: 8px;
 }
+
+.single-Todo{
+  margin-top: 5px;
+  display: flex;
+  background-color: #ffdba6c7;
+  align-items: center;
+}
+
+.date{
+  margin-right: 5px;
+}
+
+.single-Todo-Title{
+  flex-grow: 1;
+}

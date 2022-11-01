@@ -1,3 +1,6 @@
+import trash from "../images/trash.png";
+import edit from "../images/edit.png";
+
 let list = [];
 
 class CreateTodo {
@@ -26,30 +29,37 @@ export function todoSubmit() {
 }
 
 function domManipulation() {
+  const container = document.querySelector(".content");
   list.forEach((todo) => {
+    let input = document.createElement("input");
+    input.type = "checkbox";
+
     const div = document.createElement("div");
-    div.classList.add("singe-Todo");
+    div.classList.add("single-Todo");
 
     const title = document.createElement("p");
+    title.classList.add("single-Todo-Title");
     title.innerHTML = todo.name;
 
     const due = document.createElement("p");
+    due.classList.add("date");
     due.innerHTML = todo.due;
 
     const prio = document.createElement("p");
     prio.innerHTML = todo.prio;
 
-    div.append(title, due, prio);
+    div.append(input, title, due, prio);
+    container.append(div);
     createTodoIcons(div);
   });
 }
 
 function createTodoIcons(div) {
-  const createTodosDiv = document.querySelector(".content");
-  const img = document.createElement("img");
-  // img.classList.add("remove-Project");
-  // img.src = circle;
-  // p.appendChild(img);
-  createTodosDiv.append(div);
-  // trashEventListener();
+  const trashimg = document.createElement("img");
+  trashimg.src = trash;
+
+  const editimg = document.createElement("img");
+  editimg.src = edit;
+
+  div.append(trashimg, editimg);
 }
