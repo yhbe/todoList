@@ -62,10 +62,12 @@ function createTodoIcons(div) {
   trashimg.src = trash;
 
   const editimg = document.createElement("img");
+  editimg.classList.add("edit-Image");
   editimg.src = edit;
 
   div.append(trashimg, editimg);
   trashEventListener();
+  editEventListener();
 }
 
 function trashEventListener() {
@@ -91,7 +93,31 @@ function trashEventListener() {
   });
 }
 
+function editEventListener() {
+  const editImage = document.querySelectorAll(".edit-Image");
+
+  editImage.forEach((image) => {
+    image.addEventListener("click", function () {
+      let id = this.parentNode.classList[0];
+
+      let title = document.querySelector("#task");
+      const due = document.querySelector("#date");
+      const prio = document.querySelector("#priority");
+
+      list.filter((item) => {
+        if (item.id === parseFloat(id)) {
+          title.value = item.name;
+          due.value = item.due;
+          prio.value = item.prio;
+        }
+      });
+    });
+  });
+}
+
 function clear() {
   const todoContent = document.querySelector(".content");
   todoContent.innerHTML = "";
 }
+
+// function formListener(){}
