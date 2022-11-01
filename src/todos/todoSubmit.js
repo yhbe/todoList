@@ -22,6 +22,7 @@ export function todoSubmit() {
     const prio = document.querySelector("#priority").value;
 
     list.push(new CreateTodo(title, due, prio));
+    clear();
     domManipulation();
     form.reset();
     console.log(list);
@@ -35,6 +36,7 @@ function domManipulation() {
     input.type = "checkbox";
 
     const div = document.createElement("div");
+    div.classList.add(todo.id);
     div.classList.add("single-Todo");
 
     const title = document.createElement("p");
@@ -56,10 +58,40 @@ function domManipulation() {
 
 function createTodoIcons(div) {
   const trashimg = document.createElement("img");
+  trashimg.classList.add("trash-Image");
   trashimg.src = trash;
 
   const editimg = document.createElement("img");
   editimg.src = edit;
 
   div.append(trashimg, editimg);
+  trashEventListener();
+}
+
+function trashEventListener() {
+  const trashImages = document.querySelectorAll(".trash-Image");
+
+  trashImages.forEach((image) => {
+    image.addEventListener("click", (e) => {
+      const deletedProjectId = parseFloat(e.target.parentNode.classList[0]);
+
+      e.target.parentNode.remove();
+
+      let filteredList = [];
+
+      list.filter((item) => {
+        if (item.id !== deletedProjectId) {
+          filteredList.push(item);
+        }
+      });
+
+      list = filteredList;
+      console.log(list);
+    });
+  });
+}
+
+function clear() {
+  const todoContent = document.querySelector(".content");
+  todoContent.innerHTML = "";
 }
