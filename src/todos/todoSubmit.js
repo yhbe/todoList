@@ -106,22 +106,35 @@ function editEventListener() {
 
       list.filter((item) => {
         if (item.id === parseFloat(id)) {
-          displayModal();
-          title.value = item.name;
-          due.value = item.due;
-          prio.value = item.prio;
+          displayModal(item);
         }
       });
     });
   });
 }
 
-function displayModal() {
+function displayModal(item) {
   const modal = document.querySelector(".modal");
+
+  const input = document.querySelector("#modal-Task");
+  const due = document.querySelector("#modal-Date");
+  const prio = document.querySelector("#modal-Priority");
+
+  input.value = item.name;
+  due.value = item.due;
+  prio.value = item.prio;
+
   modal.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    item.name = input.value;
+    item.due = due.value;
+    item.prio = prio.value;
+
     modal.style.display = "none";
-    modal.reset();
+    clear();
+    domManipulation();
+    console.log(list);
   });
   modal.style.display = "block";
 }
