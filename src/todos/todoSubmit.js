@@ -118,6 +118,11 @@ function editEventListener() {
 
 function displayModal() {
   const modal = document.querySelector(".modal");
+  modal.addEventListener("submit", (e) => {
+    e.preventDefault();
+    modal.style.display = "none";
+    modal.reset();
+  });
   modal.style.display = "block";
 }
 
