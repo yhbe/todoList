@@ -106,6 +106,7 @@ function editEventListener() {
 
       list.filter((item) => {
         if (item.id === parseFloat(id)) {
+          displayModal();
           title.value = item.name;
           due.value = item.due;
           prio.value = item.prio;
@@ -115,9 +116,12 @@ function editEventListener() {
   });
 }
 
+function displayModal() {
+  const modal = document.querySelector(".modal");
+  modal.style.display = "block";
+}
+
 function clear() {
   const todoContent = document.querySelector(".content");
   todoContent.innerHTML = "";
 }
-
-// function formListener(){}

@@ -147,3 +147,34 @@ li > button{
 .single-Todo-Title{
   flex-grow: 1;
 }
+
+
+.modal{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(12, 12, 12, 0.753);
+}
+
+.modal-Form{
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 0, 234, 0.658);
+  box-shadow: 1px 1px 5px black;
+  padding: 30px;
+  margin: 250px auto;
+  border-radius: 5px;
+}
+
+.modal-Form > ul {
+  display: flex;
+  list-style: none;
+
+  width: 100%;
+  align-items: center;
+}
