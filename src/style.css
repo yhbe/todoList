@@ -112,6 +112,11 @@ body{
   align-items: center;
 }
 
+.active-Project{
+  margin: 25px !important;
+  box-shadow: 1px 1px 5px black !important;
+}
+
 .todo-Form{
   height: max-content;
   margin-top: 50px;
@@ -177,3 +182,5 @@ li > button{
 .single-Todo-Title{
   flex-grow: 1;
 }
+
+

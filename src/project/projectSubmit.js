@@ -40,6 +40,8 @@ function loadProjectDom() {
     p.classList.add("single-Project");
     p.innerHTML = project.name;
     createProjectIcons(p);
+    trashEventListener();
+    setCurrentProject();
   });
 }
 
@@ -50,7 +52,23 @@ function createProjectIcons(p) {
   img.src = circle;
   p.appendChild(img);
   createProjectsDiv.append(p);
-  trashEventListener();
+}
+
+function setCurrentProject() {
+  const singleProjectsDiv = document.querySelectorAll(".single-Project");
+  let activeProject = document.querySelector(".active-Project");
+  console.log(activeProject);
+
+  singleProjectsDiv.forEach((div) => {
+    div.addEventListener("click", function (e) {
+      removeActives();
+      e.target.classList.add("active-Project");
+    });
+  });
+
+  function removeActives() {
+    singleProjectsDiv.forEach((div) => div.classList.remove("active-Project"));
+  }
 }
 
 function trashEventListener() {
