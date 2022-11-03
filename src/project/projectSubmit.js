@@ -1,6 +1,12 @@
 import { storageAvailable } from "..";
 import circle from "../images/minus-Circle.png";
+import {
+  clearTodoContent,
+  domManipulation,
+  domManipulationShowAll,
+} from "../todos/todoSubmit";
 let list = [];
+export let activeProject_ = "";
 
 let setTodo = () => localStorage.setItem("todo", JSON.stringify(list));
 let getTodo = () => JSON.parse(localStorage.getItem("todo"));
@@ -17,7 +23,6 @@ function CreateProject(project) {
 
 export function projectSubmit() {
   const form = document.querySelector(".projects-Form");
-  //createdProjects
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -33,6 +38,7 @@ export function projectSubmit() {
     form.reset();
   });
 }
+
 function loadProjectDom() {
   list.forEach((project) => {
     const p = document.createElement("p");
@@ -56,19 +62,31 @@ function createProjectIcons(p) {
 
 function setCurrentProject() {
   const singleProjectsDiv = document.querySelectorAll(".single-Project");
-  let activeProject = document.querySelector(".active-Project");
-  console.log(activeProject);
 
   singleProjectsDiv.forEach((div) => {
     div.addEventListener("click", function (e) {
       removeActives();
       e.target.classList.add("active-Project");
+      activeProject_ = e.target.classList[0];
+      clearTodoContent();
+      domManipulation();
+      abc();
     });
   });
-
   function removeActives() {
     singleProjectsDiv.forEach((div) => div.classList.remove("active-Project"));
   }
+}
+
+function abc() {
+  let activeProject = document.querySelector(".active-Project");
+  activeProject.addEventListener("click", function () {
+    this.classList.remove("active-Project");
+    activeProject_ = "";
+    clearTodoContent();
+    domManipulationShowAll();
+    setCurrentProject();
+  });
 }
 
 function trashEventListener() {
@@ -95,7 +113,10 @@ function trashEventListener() {
 }
 
 if (storageAvailable("localStorage")) {
-  list = getTodo();
+  if (getTodo() === null) {
+    list == "";
+  } else list = getTodo();
+
   loadProjectDom();
 }
 

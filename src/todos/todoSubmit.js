@@ -1,5 +1,6 @@
 import trash from "../images/trash.png";
 import edit from "../images/edit.png";
+import { activeProject_ } from "../project/projectSubmit";
 
 let list = [];
 
@@ -9,6 +10,7 @@ class CreateTodo {
     this.due = due;
     this.prio = prio;
     this.id = Math.random();
+    this.category = activeProject_;
   }
 }
 
@@ -21,17 +23,48 @@ export function todoSubmit() {
     const due = document.querySelector("#date").value;
     const prio = document.querySelector("#priority").value;
 
-    list.push(new CreateTodo(title, due, prio));
-    clear();
+    list.push(new CreateTodo(title, due, prio, activeProject_));
+    clearTodoContent();
     domManipulation();
     form.reset();
-    console.log(list);
   });
 }
 
-function domManipulation() {
+export function domManipulation() {
+  const container = document.querySelector(".content");
+
+  list.forEach((todo) => {
+    if (todo.category === activeProject_) {
+      console.log(todo.category, activeProject_);
+      let input = document.createElement("input");
+      input.type = "checkbox";
+
+      const div = document.createElement("div");
+      div.classList.add(todo.id);
+      div.classList.add("single-Todo");
+
+      const title = document.createElement("p");
+      title.classList.add("single-Todo-Title");
+      title.innerHTML = todo.name;
+
+      const due = document.createElement("p");
+      due.classList.add("date");
+      due.innerHTML = todo.due;
+
+      const prio = document.createElement("p");
+      prio.innerHTML = todo.prio;
+
+      div.append(input, title, due, prio);
+      container.append(div);
+      createTodoIcons(div);
+    }
+  });
+}
+
+export function domManipulationShowAll() {
   const container = document.querySelector(".content");
   list.forEach((todo) => {
+    console.log(todo.category, activeProject_);
     let input = document.createElement("input");
     input.type = "checkbox";
 
@@ -88,7 +121,6 @@ function trashEventListener() {
       });
 
       list = filteredList;
-      console.log(list);
     });
   });
 }
@@ -132,14 +164,13 @@ function displayModal(item) {
     item.prio = prio.value;
 
     modal.style.display = "none";
-    clear();
+    clearTodoContent();
     domManipulation();
-    console.log(list);
   });
   modal.style.display = "block";
 }
 
-function clear() {
+export function clearTodoContent() {
   const todoContent = document.querySelector(".content");
   todoContent.innerHTML = "";
 }
