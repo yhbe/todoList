@@ -182,8 +182,8 @@ export function clearTodoContent() {
 }
 
 if (storageAvailable("localStorage")) {
-  if (getTodoItem() == null) {
-    list = "";
+  if (getTodoItem() === null) {
+    let list = "";
   } else {
     list = getTodoItem();
     domManipulationShowAll();
