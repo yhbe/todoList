@@ -69,7 +69,6 @@ export function domManipulation() {
 export function domManipulationShowAll() {
   const container = document.querySelector(".content");
   let activeProject_ = "";
-  console.log(list);
   list.forEach((todo) => {
     let input = document.createElement("input");
     input.type = "checkbox";
@@ -187,7 +186,6 @@ export function filterTodos(deleted) {
 
   list.filter((item) => {
     if (parseFloat(item.category) !== deleted) {
-      console.log(deleted);
       filteredList.push(item);
     }
   });
