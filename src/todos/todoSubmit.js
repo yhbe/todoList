@@ -68,6 +68,7 @@ export function domManipulation() {
 
 export function domManipulationShowAll() {
   const container = document.querySelector(".content");
+  let activeProject_ = "";
   list.forEach((todo) => {
     let input = document.createElement("input");
     input.type = "checkbox";

@@ -4,6 +4,7 @@ import {
   clearTodoContent,
   domManipulation,
   domManipulationShowAll,
+  projectWasDeleted,
 } from "../todos/todoSubmit";
 let list = [];
 export let activeProject_ = "";
@@ -33,7 +34,6 @@ export function projectSubmit() {
     list.push(new CreateProject(inp));
     setTodo();
     loadProjectDom();
-    console.log(list);
 
     form.reset();
   });
@@ -68,9 +68,12 @@ function setCurrentProject() {
       removeActives();
       e.target.classList.add("active-Project");
       activeProject_ = e.target.classList[0];
+      if (activeProject_ === "remove-Project") {
+        return;
+      }
       clearTodoContent();
       domManipulation();
-      abc();
+      doubleClickProject();
     });
   });
   function removeActives() {
@@ -78,15 +81,21 @@ function setCurrentProject() {
   }
 }
 
-function abc() {
+function doubleClickProject() {
   let activeProject = document.querySelector(".active-Project");
-  activeProject.addEventListener("click", function () {
-    this.classList.remove("active-Project");
-    activeProject_ = "";
-    clearTodoContent();
-    domManipulationShowAll();
-    setCurrentProject();
-  });
+
+  if (activeProject == null) {
+    ("");
+  } else {
+    activeProject.addEventListener("click", function () {
+      this.classList.remove("active-Project");
+      activeProject_ = "";
+
+      clearTodoContent();
+      domManipulationShowAll();
+      setCurrentProject();
+    });
+  }
 }
 
 function trashEventListener() {
@@ -95,8 +104,6 @@ function trashEventListener() {
   trashImages.forEach((image) => {
     image.addEventListener("click", (e) => {
       const deletedProjectId = parseFloat(e.target.parentNode.classList[0]);
-
-      e.target.parentNode.remove();
 
       let filteredList = [];
 
@@ -107,7 +114,10 @@ function trashEventListener() {
       });
 
       list = filteredList;
+      clear();
+      loadProjectDom();
       setTodo();
+      domManipulationShowAll();
     });
   });
 }
