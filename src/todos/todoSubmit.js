@@ -1,8 +1,13 @@
 import trash from "../images/trash.png";
 import edit from "../images/edit.png";
 import { activeProject_ } from "../project/projectSubmit";
+import { storageAvailable } from "..";
 
 let list = [];
+
+let setTodoItem = () => localStorage.setItem("todoItem", JSON.stringify(list));
+
+let getTodoItem = () => JSON.parse(localStorage.getItem("todoItem"));
 
 class CreateTodo {
   constructor(title, due, prio) {
@@ -24,6 +29,7 @@ export function todoSubmit() {
     const prio = document.querySelector("#priority").value;
 
     list.push(new CreateTodo(title, due, prio, activeProject_));
+    setTodoItem();
     clearTodoContent();
     domManipulation();
     form.reset();
@@ -35,7 +41,6 @@ export function domManipulation() {
 
   list.forEach((todo) => {
     if (todo.category === activeProject_) {
-      console.log(todo.category, activeProject_);
       let input = document.createElement("input");
       input.type = "checkbox";
 
@@ -64,7 +69,6 @@ export function domManipulation() {
 export function domManipulationShowAll() {
   const container = document.querySelector(".content");
   list.forEach((todo) => {
-    console.log(todo.category, activeProject_);
     let input = document.createElement("input");
     input.type = "checkbox";
 
@@ -121,6 +125,7 @@ function trashEventListener() {
       });
 
       list = filteredList;
+      setTodoItem();
     });
   });
 }
@@ -174,3 +179,14 @@ export function clearTodoContent() {
   const todoContent = document.querySelector(".content");
   todoContent.innerHTML = "";
 }
+
+if (storageAvailable("localStorage")) {
+  if (getTodoItem() == null) {
+    list = "";
+  } else {
+    list = getTodoItem();
+    domManipulationShowAll();
+  }
+}
+
+storageAvailable();
