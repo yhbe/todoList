@@ -4,6 +4,7 @@ import {
   clearTodoContent,
   domManipulation,
   domManipulationShowAll,
+  filterTodos,
   projectWasDeleted,
 } from "../todos/todoSubmit";
 let list = [];
@@ -69,6 +70,10 @@ function setCurrentProject() {
       e.target.classList.add("active-Project");
       activeProject_ = e.target.classList[0];
       if (activeProject_ === "remove-Project") {
+        activeProject_ = "";
+        clearTodoContent();
+        domManipulationShowAll();
+        doubleClickProject();
         return;
       }
       clearTodoContent();
@@ -117,6 +122,7 @@ function trashEventListener() {
       clear();
       loadProjectDom();
       setTodo();
+      filterTodos(deletedProjectId);
       domManipulationShowAll();
     });
   });

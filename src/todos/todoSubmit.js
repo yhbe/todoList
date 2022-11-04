@@ -69,6 +69,7 @@ export function domManipulation() {
 export function domManipulationShowAll() {
   const container = document.querySelector(".content");
   let activeProject_ = "";
+  console.log(list);
   list.forEach((todo) => {
     let input = document.createElement("input");
     input.type = "checkbox";
@@ -179,6 +180,19 @@ function displayModal(item) {
 export function clearTodoContent() {
   const todoContent = document.querySelector(".content");
   todoContent.innerHTML = "";
+}
+
+export function filterTodos(deleted) {
+  let filteredList = [];
+
+  list.filter((item) => {
+    if (parseFloat(item.category) !== deleted) {
+      console.log(deleted);
+      filteredList.push(item);
+    }
+  });
+
+  list = filteredList;
 }
 
 if (storageAvailable("localStorage")) {
