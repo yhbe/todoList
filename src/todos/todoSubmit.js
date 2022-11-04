@@ -170,8 +170,9 @@ function displayModal(item) {
     item.prio = prio.value;
 
     modal.style.display = "none";
+    setTodoItem();
     clearTodoContent();
-    domManipulation();
+    domManipulationShowAll();
   });
   modal.style.display = "block";
 }
